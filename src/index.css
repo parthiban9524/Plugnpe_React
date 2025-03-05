@@ -1,68 +1,226 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.App{
+  width:100%;
+  height: 100vh;
+}
+
+.loginContainer {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: row; /* Arrange children in a row */
+  justify-content: space-between; /* Space between login form and image */
+  align-items: center; /* Center align items */
+  height: 100vh; /* Full height of the viewport */
+  padding: 40px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.con1 {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 90%;
+  padding:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+
+.con2 {
+  flex:1; /* Takes equal space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.con2 img {
+  width: 250px; /* Adjust image size */
+  height: auto;
+}
+.logTxt{
+  color: #085D84;
+  padding: 0px 120px;
+}
+.inputField {
+  width: 40%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  margin:40px 150px;
+}
+.sendOtpBtn {
+  width: 40%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  margin-left: 150px;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.welCon {
+  display: flex;
+  align-items:flex-start;
+  gap: 10px; /* Adjust spacing between text and image */
+  margin:50px 50px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.welTxt {
+  font-weight: bold;
+}
+
+.welCon img {
+  height: 40px; /* Adjust the size of the image */
+}
+
+.sendOtpBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.verifyOtpBtn {
+  width: 40%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 150px;
+}
+
+.resendOtpBtn {
+  width: 40%;
+  padding: 12px;
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 150px;
+}
+
+.resendOtpBtn:hover {
+  background-color: #e0a800;
+}
+.imgTxt{
+  font-size: 15px; /* Adjust size as needed */
+  color:#085D84; /* Optional */
+}
+/* General styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Make sure header stays on top */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+  padding: 10px 20px;
+  z-index: 1000; 
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2)
+}
+
+/* Dashboard container layout */
+.dashboard-container {
+  display: flex;
+  margin-top: 60px; /* Pushes below the header */
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 60px; /* Adjusts for fixed header */
+  left: 0;
+  background:white;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar menu */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+}
+
+.sidebar ul li a {
+  color:#085D84;
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+  background: #444;
+  color: white;
+}
+
+/* Main content */
+.content {
+  margin-left: 260px; /* Adjust for sidebar width */
+  padding: 20px;
+  flex-grow: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  
+  .content {
+    margin-left: 210px;
   }
 }
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    position: static;
+    height: auto;
+  }
+  
+  .content {
+    margin-left: 0;
+  }
+}
+
+
+.logo {
+  height: 40px;
+}
+
+.comTxt{
+  text-align: center;
+  font-size: 30px;
+}
+
