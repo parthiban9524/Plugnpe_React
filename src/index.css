@@ -224,3 +224,217 @@ body, html {
   font-size: 30px;
 }
 
+/* Container styles */
+.login-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 100vh;
+  background-color:#f2f2f2;
+  padding: 20px;
+}
+.imgCon{
+  display: flex;
+  flex-direction: column;
+}
+/* Login box */
+.login-box {
+  background: white;
+  padding: 2rem;
+  flex: 2;
+  height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome section */
+.login-welcome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-welcome-text {
+  font-size: 25px;
+  font-weight:500;
+}
+
+.login-welcome-text2 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #085D84;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.imgSty{
+  width: 100px;
+  height: 100px;
+}
+
+/* Title */
+.login-title {
+  font-size: 22px;
+  margin: 1rem 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Steps container */
+.login-steps {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Each step */
+.login-step {
+  display: flex;
+  flex-direction: column; /* Set steps in column */
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Step icon container */
+.login-step-icon-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.login-step-icon-container2 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top:20px;
+}
+
+/* Icon */
+.login-step-icon {
+  font-size: 24px;
+  color: #085D84;
+  background:white;
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid #13BE32;
+  margin-left: 20px;
+}
+
+/* Vertical line between steps */
+.login-step-line {
+  width: 1px;
+  height: 140px;
+  background-color:#13BE32 ;
+  position: absolute;
+  left: 32px;
+  top: 30px;
+}
+.login-step-line2 {
+  width: 1px;
+  height: 30px;
+  background-color: #13BE32;
+  position: absolute;
+  left: 32px;
+  top: 28px;
+}
+
+.login-step:last-child .login-step-line {
+  display: none;
+}
+
+/* Step label (Below input) */
+.login-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Input and button container (Column Layout) */
+.emailCon {
+  display: flex;
+  flex-direction: column; /* Column arrangement */
+  gap: 25px;
+  margin:10px 0px 20px 50px;
+}
+
+/* Input fields */
+.login-input {
+  width: 100%;
+  padding: 10px;
+  border: none; /* Removes default border */
+  border-bottom: 1px solid #ccc; /* Adds only bottom border */
+  font-size: 16px;
+  outline: none; /* Removes focus border */
+  background: transparent; /* Ensures background doesn't interfere */
+}
+
+
+/* Buttons */
+.login-submit-btn{
+    background: #13BE32;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: 40%;
+
+}
+.login-confirm-btn {
+  background: #13BE32;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  width: 20%;
+  margin:20px 80px;
+}
+
+.login-submit-btn:hover{
+  
+    background: #0056b3;
+  
+}
+.login-confirm-btn:hover {
+  background: #0056b3;
+}
+
+/* Confirm Email Button (Ensures it is visible and aligned properly) */
+.confirm-mail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+/* Inactive step */
+.login-step-text {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Logo */
+.login-logo-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-logo-container img {
+  width: 350px;
+  height: 100%;
+}
