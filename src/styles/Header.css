@@ -1,0 +1,13 @@
+.header {
+    background-color: #ffffff; /* Dark background */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the logo */
+    height: 60px;
+  }
+  
+  .logo {
+    height: 40px; /* Adjust the logo size */
+    max-width: 100%;
+  }
+  

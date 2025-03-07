@@ -1,0 +1,180 @@
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #DCDCDC;
+  }
+  
+  /* Login Card - Two Sections */
+  .login-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    width: 85%;
+    height: 90%;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Left Section - Login Form */
+  .login-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 100px 0px 0px 50px;
+    height: 100%;
+  }
+  
+  /* Right Section - Footer */
+  .login-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #13be32;
+    flex-direction: column;
+  }
+  
+  /* Welcome Text */
+  .welcome-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #085d84;
+    margin-bottom: 1rem;
+  }
+  
+  .EV-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+  
+  /* Logo & Title */
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  
+  .logo-img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .logo2-img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  /* Form Section */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: 100%;
+    margin-left: 30px;
+  }
+  
+  /* Input Group */
+  .input-group {
+    display: flex;
+    align-items: center;
+    background: #f2f2f2;
+    border-radius: 8px;
+    padding: 12px;
+    width: 60%;
+    position: relative;
+  }
+  
+  /* Password Group for better positioning */
+  .password-group {
+    position: relative;
+  }
+  
+  /* Input Icon */
+  .input-icon {
+    font-size: 18px;
+    color: #085d84;
+    margin-right: 10px;
+  }
+  
+  /* Input Fields */
+  .login-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  /* Password Toggle Icon */
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+  }
+  
+  .toggle-password:hover {
+    color: #000;
+  }
+  
+  /* Login Button */
+  .login-button {
+    background: #13be32;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 30%;
+  }
+  
+  .login-button:hover {
+    background: #0ea626;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .login-left,
+    .login-right {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+      height: auto;
+    }
+  
+    .login-right {
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
+    .input-group {
+      width: 80%; /* Adjust input width for small screens */
+    }
+  
+    .login-button {
+      width: 50%; /* Adjust button width for small screens */
+    }
+  }
+  

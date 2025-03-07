@@ -1,89 +1,82 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEnvelope, FaCheckCircle, FaPaperPlane } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import DataContext from "../api/context/DataContext";
 import logo from "../assets/Images/logo.png";
 import logo2 from "../assets/Images/logo2.png";
+import "../styles/Login.css"
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [verificationSent, setVerificationSent] = useState(false);
+  const { email, setEmail, password, setPassword, login, loading, error } = useContext(DataContext);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Dummy function for now, can be used later for actual verification
-  const sendVerificationEmail = async () => {
-    alert("Verification link sent successfully!");
-    setVerificationSent(true);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
-  // Dummy function for confirming email
-  const confirmEmail = async () => {
-    alert("Email confirmed successfully!");
-    navigate("/dashboard");
+  const handleLogin = async () => {
+    // const response = await login(email, password);
+  
+      navigate("/dashboard"); // ✅ Navigate only if login is successful
+    
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <div className="login-welcome">
-          <h1 className="login-welcome-text">Welcome to </h1>
-          <h1 className="login-welcome-text2">Plugnpe </h1>
-        </div>
-        <h1 className="login-title">Login</h1>
+      <div className="login-card">
+        {/* Left Side - Login Form & Welcome Text */}
+        <div className="login-left">
+          <div className="login-header">
+            <img src={logo} alt="logo1" className="logo-img" />
+            <h2 className="welcome-text">Welcome to Plugnpe</h2>
+            <h2 className="welcome-text">Login</h2>
+          </div>
 
-        <div className="login-steps">
-          <div className="login-step active">
-            <div className="login-step-icon-container">
-              <FaEnvelope className="login-step-icon" />
-              <div className="login-step-line"></div>
-              <label className="login-label">Email</label>
-            </div>
-            <div className="emailCon">
-            {!verificationSent && (
+          <div className="login-form">
+            {/* Email Input */}
+            <div className="input-group">
+              <FaEnvelope className="input-icon" />
               <input
                 type="email"
                 className="login-input"
-                placeholder="Email Address *"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
-            )}
-            {!verificationSent && (
-              <button className="login-submit-btn" onClick={sendVerificationEmail}>
-                Submit
-              </button>
-            )}
             </div>
-          </div>
 
-          <div className={`login-step ${verificationSent ? "active" : ""}`}>
-            <div className="login-step-icon-container">
-              <FaPaperPlane className="login-step-icon" />
-              <div className="login-step-line2"></div>
-              <span className="login-step-text">Sent Verification Link</span>
+            {/* Password Input with Toggle */}
+            <div className="input-group password-group">
+              <FaLock className="input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                className="login-input"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span className="toggle-password" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
-          </div>
 
-          <div className="login-step">
-            <div className="login-step-icon-container2">
-              <FaCheckCircle className="login-step-icon" />
-              <span className="login-step-text">Confirm Email</span>
-            </div>
-            {verificationSent && (
-              <button className="login-confirm-btn" onClick={confirmEmail}>
-                Confirm Email
-              </button>
-            )}
+
+            {/* Submit Button */}
+            <button className="login-button" onClick={handleLogin} disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
           </div>
         </div>
-      </div>
-      
-      <div className="login-logo-container">
-  <div className="imgCon">
-    <img src={logo} alt="logo1" className="logo-style1"/>
-    <img src={logo2} alt="logo2" className="logo-style2"/>
-  </div>
-</div>
 
+        {/* Right Side - Footer Logo */}
+        <div className="login-right">
+          <h2 className="EV-text">Making EV Drive Smarter</h2>
+          <img src={logo2} alt="logo2" className="logo2-img" />
+        </div>
+      </div>
     </div>
   );
 };
