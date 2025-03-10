@@ -2,8 +2,11 @@
     display: flex;
     height: 100vh;
     background-color: #f4f4f4;
+    overflow: hidden;
+    position: relative;
 }
-  
+
+/* Sidebar Styles */
 .sidebar {
     width: 250px;
     background-color: #085d84;
@@ -11,6 +14,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar h2 {
@@ -51,6 +56,14 @@
     font-size: 22px;
 }
 
+.sidebar ul li a.active {
+    background-color: #1c7ea0;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Logout Button */
 .LogOut {
     background-color: #13be32;
     color: white;
@@ -59,8 +72,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: auto; /* Push Logout button to bottom */
-    width: 100%; /* Make it full width */
+    margin-top: auto;
+    width: 100%;
     text-align: center;
 }
 
@@ -68,23 +81,63 @@
     background-color: #c0392b;
 }
 
-
+/* ✅ Content Area */
 .content {
     flex-grow: 1;
     background-color: #DCDCDC;
-    overflow-y: auto;
-    display: flex;  /* Ensure it stretches */
-    flex-direction: column;
-    height: 100vh; /* Full viewport height */
-    width: 100vw;  /* Full viewport width */
-}
-
-
-.mainContent {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;  /* Make it take the remaining space */
-    width: 100%;  /* Match width */
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
 }
 
+/* ✅ Ensure the main content area is scrollable */
+.mainContent {
+    flex-grow: 1;
+    width: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - 60px);
+}
+
+/* ✅ Hide Menu Icon on Desktop */
+.menu-toggle {
+    display: none;
+}
+
+/* ✅ Mobile & Tablet Styles */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #085d84;
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        transform: translateX(260px);
+    }
+
+    /* Show Menu Icon on Mobile & Tablet */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: none;
+        border: none;
+        color: #085d84;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
