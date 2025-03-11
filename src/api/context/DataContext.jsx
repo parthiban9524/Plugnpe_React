@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const DataContext = createContext({});
 
@@ -8,14 +8,27 @@ export const DataProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [pendingWithdraws, setPendingWithdraws] = useState([]); // Store API data
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [chargingStations, setChargingStations] = useState(
+    JSON.parse(localStorage.getItem("chargingStations")) || null
+  );
+  const [pendingWithdraws, setPendingWithdraws] = useState([]);
 
   const BASE_URL = "https://plugnpe.azurewebsites.net/api";
   const verificationUrl = `${BASE_URL}/Customer/AuthorizeAdmin`;
   const getAllPendingWithdraws = `${BASE_URL}/Payment/GetAllPendingWithdraws`;
-  const token =
-    "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiOTM2MTgzMDI4OCIsImp0aSI6IjA1OGUyYWFmLTQwMzAtNGIwYi05MzQwLWIyZTQzYjAzMTk1ZiIsImV4cCI6MTc0MjQ0MDkyNCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNDEiLCJhdWQiOiJVc2VyIn0.hyC3Ln7g6yqi9VyksEcHFFrju1GPBUAwNT_AzzGHUd0";
+  const getChargingStationsUrl = `${BASE_URL}/chargingStation/GetChargingStations`;
 
+  // Save token in localStorage
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
+
+  // **Login API**
   const login = async (email, password) => {
     if (!email || !password) {
       alert("Please enter email and password.");
@@ -27,29 +40,24 @@ export const DataProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `${verificationUrl}?email=${encodeURIComponent(
-          email
-        )}&password=${encodeURIComponent(password)}`,
+        `${verificationUrl}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         { method: "POST" }
       );
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.token) {
         setIsAuthenticated(true);
         setEmail(email);
         setPassword(password);
+        setToken(data.token);
         setError("");
-
         alert("Login Successful!");
         return { success: true, message: "Login Successful!" };
       } else {
         setError(data.message || "Invalid email or password.");
         alert(data.message || "Invalid email or password.");
-        return {
-          success: false,
-          message: data.message || "Invalid email or password.",
-        };
+        return { success: false, message: data.message || "Invalid email or password." };
       }
     } catch (error) {
       setError(error.message);
@@ -60,6 +68,45 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // **Fetch Charging Stations & Store in Local Storage**
+  const getChargingStations = async () => {
+    setLoading(true);
+    setError("");
+  
+    try {
+      const url = `${getChargingStationsUrl}?hostId=0`;
+      console.log("Fetching charging stations from:", url);
+  
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Ensure token is correct
+        },
+      });
+  
+      console.log("Response Status:", response.status);
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error: ${response.status} - ${errorText}`);
+      }
+  
+      const data = await response.json();
+      console.log("Charging Stations Data:", data);
+  
+      setChargingStations(data);
+      localStorage.setItem("chargingStations", JSON.stringify(data));
+    } catch (err) {
+      setError(err.message);
+      console.error("Fetch Charging Stations Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
+  // **Fetch Pending Withdrawals**
   const getPendingWithdraws = async () => {
     setLoading(true);
     setError("");
@@ -69,7 +116,7 @@ export const DataProvider = ({ children }) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // 🔹 Add the correct auth token
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -79,7 +126,7 @@ export const DataProvider = ({ children }) => {
 
       const text = await response.text();
       if (!text) {
-        setPendingWithdraws([]); // Handle empty response safely
+        setPendingWithdraws([]);
         return;
       }
 
@@ -92,12 +139,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setEmail("");
-    setPassword("");
-    setIsAuthenticated(false);
-  };
-
+  // **Approve Withdrawal**
   const approveWithdrawal = async (transactionId) => {
     if (!transactionId) {
       alert("Invalid transaction ID");
@@ -114,18 +156,14 @@ export const DataProvider = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // 🔹 Add the correct auth token
+          Authorization: `Bearer ${token}`,
         },
       });
-      console.log("responseeee",response)
 
       if (!response.ok) {
         const errorMessage = `HTTP error! Status: ${response.status}`;
         throw new Error(errorMessage);
       }
-
-      const text = await response.text();
-      const data = text ? JSON.parse(text) : {}; // Safely parse response
 
       alert("Withdrawal approved!");
       return { success: true, message: "Withdrawal approved!" };
@@ -138,6 +176,18 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  // **Logout Function (Clears Local Storage)**
+  const logout = () => {
+    setEmail("");
+    setPassword("");
+    setIsAuthenticated(false);
+    setToken("");
+    setChargingStations(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("chargingStations"); // Clear stored data on logout
+  };
+  
+
   return (
     <DataContext.Provider
       value={{
@@ -147,13 +197,16 @@ export const DataProvider = ({ children }) => {
         setPassword,
         isAuthenticated,
         setIsAuthenticated,
+        token,
         loading,
         error,
         login,
         logout,
         pendingWithdraws,
-        getPendingWithdraws, // Provide function
+        getPendingWithdraws,
         approveWithdrawal,
+        chargingStations,
+        getChargingStations,
       }}
     >
       {children}

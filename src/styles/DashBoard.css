@@ -22,6 +22,7 @@
     text-align: left;
     font-size: 22px;
     margin-bottom: 20px;
+    font-family: "Poppins-Bold";
 }
 
 .sidebar ul {
@@ -41,6 +42,7 @@
     text-decoration: none;
     color: white;
     font-size: 18px;
+    font-family: "Poppins-Medium";
     padding: 10px;
     border-radius: 5px;
     transition: background 0.3s ease-in-out;
@@ -63,6 +65,59 @@
     transition: background 0.3s ease-in-out;
 }
 
+
+/* ✅ User Menu */
+.user-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.user-menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-family: "Poppins-Medium";
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.user-menu-toggle:hover {
+    background-color: #34495e;
+}
+
+.sub-menu {
+    list-style: none;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-menu li {
+    margin-top: 5px;
+}
+
+.sub-menu li span {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-family: "Poppins-Regular";
+    padding: 6px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.sub-menu li a:hover {
+    background-color: #1c7ea0;
+}
+
+
 /* Logout Button */
 .LogOut {
     background-color: #13be32;
@@ -72,6 +127,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    font-family: "Poppins-Medium";
     margin-top: auto;
     width: 100%;
     text-align: center;
@@ -84,7 +140,7 @@
 /* ✅ Content Area */
 .content {
     flex-grow: 1;
-    background-color: #DCDCDC;
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
     height: 100vh;

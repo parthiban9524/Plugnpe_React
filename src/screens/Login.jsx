@@ -17,7 +17,13 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
-    navigate("/dashboard");
+    const response = await login(email, password); // Call login function
+  
+    if (response.success) {
+      navigate("/dashboard"); // Navigate if login is successful
+    } else {
+      alert(response.message); // Show API error in an alert
+    }
   };
 
   return (

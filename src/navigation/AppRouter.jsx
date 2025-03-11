@@ -6,6 +6,9 @@ import Location from "../screens/Location";
 import Reports from "../screens/Reports";
 import AdminDashboard from "../screens/AdminDashboard";
 import Payment from "../screens/Payment";
+import HostDetails from "../screens/HostDetails";
+import UserDetails from "../screens/UserDetails";
+import ServiceProvider from "../screens/ServiceProvider";
 
 const AppRouter = () => {
   return (
@@ -14,11 +17,15 @@ const AppRouter = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />}>
-            {/* Nested routes under Dashboard */}
-            <Route path="adminDashboard" element={<AdminDashboard/>} />
+            <Route path="adminDashboard" element={<AdminDashboard />} />
+            <Route path="hostDetails" element={<HostDetails />} />
             <Route path="payment" element={<Payment />} />
-            <Route path="reports" element={<Reports/>} />
-            <Route path="location" element={<Location/>} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="location" element={<Location />} />
+            
+            {/* ✅ New User Routes */}
+            <Route path="userDetails" element={<UserDetails />} />
+            <Route path="serviceProvider" element={<ServiceProvider />} />
           </Route>
         </Routes>
       </Router>
