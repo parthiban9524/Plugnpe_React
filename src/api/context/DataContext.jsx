@@ -12,12 +12,16 @@ export const DataProvider = ({ children }) => {
   const [chargingStations, setChargingStations] = useState(
     JSON.parse(localStorage.getItem("chargingStations")) || null
   );
+  const [userDetails, setUserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails")) || null
+  );
   const [pendingWithdraws, setPendingWithdraws] = useState([]);
 
   const BASE_URL = "https://plugnpe.azurewebsites.net/api";
   const verificationUrl = `${BASE_URL}/Customer/AuthorizeAdmin`;
   const getAllPendingWithdraws = `${BASE_URL}/Payment/GetAllPendingWithdraws`;
   const getChargingStationsUrl = `${BASE_URL}/chargingStation/GetChargingStations`;
+  const getUserDetailsUrl = `${BASE_URL}/Customer/GetCustomers`;
 
   // Save token in localStorage
   useEffect(() => {
@@ -105,6 +109,42 @@ export const DataProvider = ({ children }) => {
     }
   };
   
+
+  const getUserDetails = async () => {
+    setLoading(true);
+    setError("");
+  
+    try {
+      const url = `${getUserDetailsUrl}?id=0`;
+      console.log("Fetching User Details from:", url);
+  
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Ensure token is correct
+        },
+      });
+  
+      console.log("Response Status:", response.status);
+  
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error: ${response.status} - ${errorText}`);
+      }
+  
+      const data = await response.json();
+      console.log("Uer Details Data:", data);
+  
+      setUserDetails(data);
+      localStorage.setItem("chargingStations", JSON.stringify(data));
+    } catch (err) {
+      setError(err.message);
+      console.error("Fetch Charging Stations Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // **Fetch Pending Withdrawals**
   const getPendingWithdraws = async () => {
@@ -207,6 +247,8 @@ export const DataProvider = ({ children }) => {
         approveWithdrawal,
         chargingStations,
         getChargingStations,
+        getUserDetails,
+        userDetails
       }}
     >
       {children}

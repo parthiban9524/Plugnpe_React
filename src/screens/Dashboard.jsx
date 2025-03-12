@@ -17,6 +17,7 @@ const Dashboard = () => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserSubMenuOpen, setIsUserSubMenuOpen] = useState(false); // Submenu state for User tab
+  const [isServiceUserSubMenuOpen, setIsServiceUserSubMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -34,6 +35,10 @@ const Dashboard = () => {
 
   const toggleUserSubMenu = () => {
     setIsUserSubMenuOpen(!isUserSubMenuOpen);
+  };
+
+  const toggleServiceUserSubMenu = () => {
+    setIsServiceUserSubMenuOpen(!isServiceUserSubMenuOpen);
   };
 
   return (
@@ -71,7 +76,7 @@ const Dashboard = () => {
             <li className="user-menu">
             <button className="user-menu-toggle" onClick={toggleUserSubMenu}>
               <MdOutlinePerson className="menu-icon" />
-              <span>User</span>
+              <span>User's Details</span>
             </button>
             {isUserSubMenuOpen && (
               <ul className="sub-menu">
@@ -81,7 +86,8 @@ const Dashboard = () => {
                     className={location.pathname.includes("userDetails") ? "active" : ""}
                     onClick={closeSidebar}
                   >
-                    <span>Normal User</span>
+                     <MdOutlinePerson className="menu-icon" />
+                    <span>Customers</span>
                   </Link>
                 </li>
                 <li>
@@ -90,18 +96,42 @@ const Dashboard = () => {
                     className={location.pathname.includes("hostDetails") ? "active" : ""}
                     onClick={closeSidebar}
                   >
-                    <span>Host</span>
+                     <MdOutlinePerson className="menu-icon" />
+                    <span>Station Owners</span>
+                  </Link>
+                </li>
+                <li className="user-menu">
+                <button className="user-menu-toggle" onClick={toggleServiceUserSubMenu}>
+              <MdOutlinePerson className="menu-icon" />
+              <span>24/7 Service</span>
+            </button>
+            {isServiceUserSubMenuOpen && (
+              <ul className="sub-menu">
+                <li>
+                  <Link
+                    to="userDetails"
+                    className={location.pathname.includes("userDetails") ? "active" : ""}
+                    onClick={closeSidebar}
+                  >
+                    <MdOutlinePerson className="menu-icon" />
+                    <span>24/7 User's</span>
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="serviceProvider"
-                    className={location.pathname.includes("serviceProvider") ? "active" : ""}
+                    className={location.pathname.includes("hostDetails") ? "active" : ""}
                     onClick={closeSidebar}
                   >
-                    <span>24/7 Service Provider</span>
+                    <MdOutlinePerson className="menu-icon" />
+                    <span>24/7 Service Providers</span>
                   </Link>
                 </li>
+              </ul>
+            )}
+
+            
+            </li>
               </ul>
             )}
           </li>

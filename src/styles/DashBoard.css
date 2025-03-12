@@ -94,7 +94,7 @@
 
 .sub-menu {
     list-style: none;
-    padding-left: 20px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
 }
