@@ -29,6 +29,9 @@ const HostDetails = () => {
 
   return (
     <div className="host-details-container">
+      <div className="headerCon">
+      <h2 className="host-heading">Host's Details</h2>
+      </div>
       {validStations.map((station, index) => (
         <div key={index} className="station-card">
           {/* Header Section with Name & Address */}
@@ -43,7 +46,9 @@ const HostDetails = () => {
           {/* Station Details - Show only when button is clicked */}
           {expandedStations[index] && (
             <div className="station-details">
-              <div className="detail-box"><strong>Customer ID</strong><span>{station.customerId}</span></div>
+              <div className="detail-box"><strong>Host ID</strong><span>{station.customerId}</span></div>
+              <div className="detail-box"><strong>Device ID</strong><span>{station.deviceId}</span></div>
+              <div className="detail-box">  <strong>Device Status</strong><span>{station.mqttDeviceStatus === "U" ? "Offline" : station.mqttDeviceStatus === "A" ? "Available : Charging" : "Unknown"}</span></div>
               <div className="detail-box"><strong>Vehicle Support</strong><span>{station.vehicleSupport}</span></div>
               <div className="detail-box"><strong>Charger Type</strong><span>{station.chargerTypeSupport}</span></div>
               <div className="detail-box"><strong>Connector Type</strong><span>{station.connectorType}</span></div>

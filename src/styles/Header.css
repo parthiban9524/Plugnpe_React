@@ -1,13 +1,35 @@
 .header {
-    background-color: #ffffff; /* Dark background */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers the logo */
-    height: 60px;
-  }
-  
-  .logo {
-    height: 40px; /* Adjust the logo size */
-    max-width: 100%;
-  }
-  
+  background-color: #ffffff; /* White background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes items to opposite sides */
+  padding: 15px 20px;
+  height: 80px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* Stronger bottom shadow */
+  z-index: 200; /* Ensure it's above other elements */
+}
+
+/* Logo */
+.logo {
+  height: 60px; /* Adjust the logo size */
+  max-width: 100%;
+}
+
+/* Logout Button */
+.LogOut {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.LogOut:hover {
+  opacity: 0.8;
+}
+
+/* Logout Icon */
+.logout-icon {
+  width: 60px; /* Adjust icon size */
+  height: 60px;
+}

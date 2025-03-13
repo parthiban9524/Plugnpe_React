@@ -1,10 +1,10 @@
-import React, { useContext, useEffect,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../api/context/DataContext";
 import "../styles/Payment.css"; // Import the CSS file
 
 function Payment() {
   const { pendingWithdraws, getPendingWithdraws, loading, error, approveWithdrawal } = useContext(DataContext);
-   const [expandedRows, setExpandedRows] = useState({});
+  const [expandedRows, setExpandedRows] = useState({});
 
   useEffect(() => {
     getPendingWithdraws(); // Fetch data when component mounts
@@ -19,51 +19,59 @@ function Payment() {
   };
 
   return (
-    <div>
+    <div className="payment-container">
       {loading && <p>Loading...</p>}
       {error && <p className="error">{error}</p>}
 
       {pendingWithdraws?.length > 0 ? (
-        <div className="user-list">
-          {pendingWithdraws.map((withdraw,index) => (
-            <div key={index} className="user-item">
-                <div className="user-header">
-            <h3 className="user-name">{withdraw.customerDetail.firstName} {withdraw.customerDetail.lastName}</h3>
-            <p className="user-address">{withdraw.customerDetail.email}</p>
-            <button className="get-details-button" onClick={() => toggleRow(index)}>
-                {expandedRows[index] ? "Hide Details" : "Get Details"}
-              </button> 
-          </div>
-
-
-           
-
-              {/* ✅ Expanded Details (Only show when button clicked) */}
-              {expandedRows[index] && (
-                <>
-                <div className="user-details">
-                  <div className="detail-box"><strong>Customer ID</strong><span>{withdraw.customerId}</span></div>
-                  <div className="detail-box"><strong>Mobile Number</strong><span>{withdraw.customerDetail.mobileNumber}</span></div>
-                  <div className="detail-box"><strong>Email</strong><span>{withdraw.customerDetail.email}</span></div>
-                  <div className="detail-box"><strong>Withdraw Amount</strong><span>{withdraw.amount}</span></div>
-                  <div className="detail-box"><strong>Payment Mode</strong><span>{withdraw.note}</span></div>
-                  <div className="detail-box"><strong>Account Holder Name</strong><span>{withdraw.customerDetail.accountHolderName}</span></div>
-                  <div className="detail-box"><strong>AccountNumber</strong><span>{withdraw.customerDetail.accountNumber}</span></div>
-                  <div className="detail-box"><strong>IFSC Code</strong><span>{withdraw.customerDetail.ifscCode}</span></div>
-                  <div className="detail-box"><strong>Upi Id</strong><span>{withdraw.customerDetail.upiid}</span></div>
-                  <div className="detail-box"><strong>Payment Status</strong><span>{withdraw.status}</span></div>
-                </div>
-                <div className="approveBtnBox">
-                         <button className="approve-btn" onClick={() => handleApprove(withdraw.transactionId)}>
-                    Approve
-              </button>
-                </div>
-                </>
-                
-              )}
-            </div>
-          ))}
-        </div>
+        <table className="payment-table">
+          <thead>
+            <tr>
+              <th>Customer Id</th>
+              <th>Customer Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pendingWithdraws.map((withdraw, index) => (
+              <React.Fragment key={index}>
+                <tr>
+                <td>{withdraw.customerId}</td>
+                  <td>{withdraw.customerDetail.firstName} {withdraw.customerDetail.lastName}</td>
+                  <td>
+                    <button className="get-details-button" onClick={() => toggleRow(index)}>
+                      {expandedRows[index] ? "Hide Details" : "Get Details"}
+                    </button>
+                  </td>
+                </tr>
+                {expandedRows[index] && (
+                  <tr className="details-row">
+                    <td colSpan="3">
+                      <table className="details-table">
+                        <tbody>
+                          <tr><td><strong>Mobile Number:</strong></td><td>{withdraw.customerDetail.mobileNumber}</td></tr>
+                          <tr><td><strong>Email:</strong></td><td>{withdraw.customerDetail.email}</td></tr>
+                          <tr><td><strong>Withdraw Amount:</strong></td><td>{withdraw.amount}</td></tr>
+                          <tr><td><strong>Payment Mode:</strong></td><td>{withdraw.note}</td></tr>
+                          <tr><td><strong>Account Holder Name:</strong></td><td>{withdraw.customerDetail.accountHolderName}</td></tr>
+                          <tr><td><strong>Account Number:</strong></td><td>{withdraw.customerDetail.accountNumber}</td></tr>
+                          <tr><td><strong>IFSC Code:</strong></td><td>{withdraw.customerDetail.ifscCode}</td></tr>
+                          <tr><td><strong>UPI ID:</strong></td><td>{withdraw.customerDetail.upiid}</td></tr>
+                          <tr><td><strong>Payment Status:</strong></td><td>{withdraw.status}</td></tr>
+                        </tbody>
+                      </table>
+                      <div className="approveBtnBox">
+                        <button className="approve-btn" onClick={() => handleApprove(withdraw.transactionId)}>
+                          Approve
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>No user details found.</p>
       )}

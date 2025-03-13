@@ -6,6 +6,31 @@
   justify-content: center;
 }
 
+.host-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #085D84, #13BE32);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+.headerCon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .station-card {
   background: white;
   padding: 30px;
@@ -48,7 +73,7 @@
 
 /* Get Details Button */
 .get-details-button {
-  background: #085D84;
+  background: linear-gradient(135deg, #085D84, #13BE32);
   color: white;
   font-size: 14px;
   font-family: "Poppins-Medium", sans-serif;

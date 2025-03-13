@@ -1,136 +1,154 @@
-
-/* ✅ User List */
-.user-list {
-    display: grid;
-    gap: 40px;
-    padding: 50px;
-    justify-content: center;
+/* ✅ Main Container */
+.user-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* ✅ Individual User Card */
-.user-item {
-    background:#ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-width: 1000px;
-}
-
-.user-item:hover {
-    transform: translateY(-3px);
-}
-
-/* ✅ User Info (ID & Name in Row) */
-/* ✅ User Info Container */
-.user-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.user-name {
-    font-size: 22px;
+/* ✅ Stylish Users Heading */
+.user-heading {
+    font-size: 28px;
     font-weight: bold;
-    color: #085D84;
-    padding-bottom: 10px;
-    font-family: "Poppins-Bold", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #085D84, #13BE32);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: auto;
+    margin-bottom: 20px;
   }
+
   
-  .user-address {
-    font-size: 14px;
-    color: #000;
-    font-family: "Poppins-Medium";
-    margin-bottom: 10px;
-  }
 
-
-
-/* ✅ More Details Button */
-.get-details-button {
-    background: #085D84;
-    color: white;
-    font-size: 14px;
-    font-family: "Poppins-Medium", sans-serif;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-  }
-
-.toggle-btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+/* ✅ Table Styling */
+.user-table {
+  width: 80%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
+.user-table th,
+.user-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
-/* ✅ Expanded Details */
-.user-details {
+.user-table th {
+  font-size: 17px;
+  font-family: "Poppins-Bold";
+  color: #085D84;
+  background: none;
+  border-bottom: 2px solid #ddd;
+}
+
+.user-table td {
+  font-size: 14px;
+  color: #000;
+  font-family: "Poppins-Medium";
+}
+
+.userTxt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+  padding: 10px;
+}
+
+/* ✅ User List Card */
+.user-card {
+  width: 80%;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* ✅ Get Details Button */
+.get-userDetails-button {
+  background: linear-gradient(135deg, #085D84, #13BE32);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.get-userDetails-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* ✅ Expanded Details Table */
+.userDetails-table {
+  width: 100%;
+  margin: 30px;
+}
+
+.userDetails-table td {
+  padding: 8px;
+  color: #333;
+}
+
+.userDetails-table tr td:first-child {
+  font-weight: bold;
+  color: #085D84;
+  width: 50%;
+}
+
+.userDetails-table tr td:last-child {
+  color: #13BE32;
+}
+
+.button-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically */
+    gap: 10px; /* Adds space between buttons */
     margin-top: 10px;
-}
-
-.detail-box {
-    flex: 1;
-    min-width: 200px;
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 8px;
-    overflow-wrap: break-word;
-  }
-
-  .detail-box strong {
-    display: block;
-    font-size: 14px;
-    color: #333;
-    padding-bottom: 10px;
-    font-family: "Poppins-Regular";
   }
   
-  .detail-box span {
-    font-size: 14px;
-    color: #13BE32;
-    font-family: "Poppins-Medium";
+  .edit-button, .delete-button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
   }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+  }
+  
+  
+  
+  
 
-
-
-
-/* ✅ Keyframe Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* ✅ Responsive Design */
 @media screen and (max-width: 768px) {
-    .user-container {
-        width: 90%;
-        padding: 15px;
-    }
-    .user-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .toggle-btn {
-        font-size: 13px;
-    }
+  .payment-table {
+    width: 100%;
+  }
+  .user-card {
+    width: 100%;
+  }
 }

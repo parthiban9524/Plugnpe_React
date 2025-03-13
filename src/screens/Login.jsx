@@ -66,7 +66,7 @@ const LoginScreen = () => {
             </div>
 
             <button className="login-button" onClick={handleLogin} disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
+              Login
             </button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Link, Outlet,useLocation } from "react-router-dom";
 import {
   MdOutlineDashboard,
   MdOutlineLocationOn,
@@ -13,17 +13,11 @@ import Header from "./Header";
 import "../styles/Dashboard.css";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isUserSubMenuOpen, setIsUserSubMenuOpen] = useState(false); // Submenu state for User tab
   const [isServiceUserSubMenuOpen, setIsServiceUserSubMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    sessionStorage.clear();
-    navigate("/");
-  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -42,6 +36,8 @@ const Dashboard = () => {
   };
 
   return (
+    <div className="dashboard">
+      <Header/>
     <div className="dashboard-container">
       {/* Menu Icon for Mobile & Tablet */}
       <button className="menu-toggle" onClick={toggleSidebar}>
@@ -97,7 +93,7 @@ const Dashboard = () => {
                     onClick={closeSidebar}
                   >
                      <MdOutlinePerson className="menu-icon" />
-                    <span>Station Owners</span>
+                    <span>Host's</span>
                   </Link>
                 </li>
                 <li className="user-menu">
@@ -158,16 +154,15 @@ const Dashboard = () => {
           </li>
 
         </ul>
-        <button className="LogOut" onClick={handleLogout}>LogOut</button>
       </nav>
 
       {/* Main Content */}
       <main className="content">
-        <Header />
         <div className="mainContent">
           <Outlet />
         </div>
       </main>
+    </div>
     </div>
   );
 };

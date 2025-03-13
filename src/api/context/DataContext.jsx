@@ -56,7 +56,6 @@ export const DataProvider = ({ children }) => {
         setPassword(password);
         setToken(data.token);
         setError("");
-        alert("Login Successful!");
         return { success: true, message: "Login Successful!" };
       } else {
         setError(data.message || "Invalid email or password.");
@@ -226,6 +225,43 @@ export const DataProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("chargingStations"); // Clear stored data on logout
   };
+
+  const deleteCustomer = async (id) => {
+    if (!id) {
+      alert("Invalid customer ID");
+      return;
+    }
+  
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmDelete) return;
+  
+    setLoading(true);
+    setError("");
+  
+    try {
+      const url = `${BASE_URL}/customer/DeleteCustomer?id=${id}`;
+  
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      alert("User deleted successfully!");
+    } catch (error) {
+      setError(error.message);
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   
 
   return (
@@ -248,7 +284,8 @@ export const DataProvider = ({ children }) => {
         chargingStations,
         getChargingStations,
         getUserDetails,
-        userDetails
+        userDetails,
+        deleteCustomer,
       }}
     >
       {children}
