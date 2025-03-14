@@ -1,0 +1,158 @@
+/* ✅ Main Container */
+.user-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* ✅ Stylish Users Heading */
+.user-heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: #085D84;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* ✅ Table Container (For Centering & Equal Widths) */
+.table-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ Table Styling */
+.user-table,
+.userDetails-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* ✅ Table Header */
+.user-table th,
+.userDetails-table th {
+    padding: 15px;
+    text-align: left;
+    font-size: 17px;
+    font-family: "Poppins-Bold";
+    color: #085D84;
+    background: none;
+    border-bottom: 2px solid #ddd;
+}
+
+/* ✅ Table Data */
+.user-table td,
+.userDetails-table td {
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+    font-family: "Poppins-Medium";
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ✅ User Details Table Row */
+.userDetails-row {
+    width: 100%;
+}
+
+/* ✅ User Details Table */
+.userDetails-table {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid red; /* ✅ Debugging: Remove if not needed */
+    margin-top: 10px;
+    width: 80%;
+    padding: 10px;
+}
+
+/* ✅ User Details Table Columns */
+.userDetails-table tr td:first-child {
+    font-weight: bold;
+    color: #085D84;
+    width: 50%;
+}
+
+.userDetails-table tr td:last-child {
+    color: #13BE32;
+}
+
+/* ✅ Button Styles */
+.get-userDetails-button {
+    background: #13BE32;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.get-userDetails-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* ✅ Service Details Section */
+.service-details-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.service-details-table th {
+    background: #085D84;
+    color: white;
+}
+
+.service-details-table td {
+    background: #ffffff;
+}
+
+/* ✅ Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.edit-button,
+.delete-button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+}
+
+/* ✅ Responsive Design */
+@media screen and (max-width: 768px) {
+    .table-container {
+        width: 100%;
+    }
+}

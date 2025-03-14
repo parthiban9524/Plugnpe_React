@@ -20,6 +20,7 @@ function Payment() {
 
   return (
     <div className="payment-container">
+      <h2 className="user-heading">Payment Details</h2>
       {loading && <p>Loading...</p>}
       {error && <p className="error">{error}</p>}
 

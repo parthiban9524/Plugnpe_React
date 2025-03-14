@@ -23,6 +23,9 @@ export const DataProvider = ({ children }) => {
   const getChargingStationsUrl = `${BASE_URL}/chargingStation/GetChargingStations`;
   const getUserDetailsUrl = `${BASE_URL}/Customer/GetCustomers`;
 
+
+   
+
   // Save token in localStorage
   useEffect(() => {
     if (token) {
@@ -261,6 +264,85 @@ export const DataProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const deleteHost = async (id) => {
+    if (!id) {
+      alert("Invalid customer ID");
+      return;
+    }
+  
+    const confirmDelete = window.confirm("Are you sure you want to delete this Host?");
+    if (!confirmDelete) return;
+  
+    setLoading(true);
+    setError("");
+  
+    try {
+      const url = `${BASE_URL}/ChargingStation/DeleteChargingStation?id=${id}`;
+  
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      alert("Host deleted successfully!");
+    } catch (error) {
+      setError(error.message);
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getServices = async (id) => {
+    console.log(`Fetching services for customerId: ${id}`); 
+  
+    try {
+      const response = await fetch(`${BASE_URL}/ServiceDetail/GetServiceDetail?customerId=${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+  
+      console.log(`HTTP Status: ${response.status}`);
+  
+      if (!response.ok) {
+        console.error("HTTP error! Status:", response.status);
+        return [];
+      }
+  
+      const data = await response.json();
+      console.log(`API Response for ID ${id}:`, data);
+  
+      // Ensure we correctly extract service details
+      if (data && Array.isArray(data)) {
+        console.log(`Valid services for ID ${id}:`, data);
+        return data;  // ✅ Return services directly if it's an array
+      } 
+      else if (data?.status === "Success" && Array.isArray(data.result)) {
+        console.log(`Valid services (inside result) for ID ${id}:`, data.result);
+        return data.result;  // ✅ Return `data.result` if it's inside the "result" key
+      } 
+      else {
+        console.warn(`Unexpected API structure for ID ${id}:`, data);
+        return []; // Return empty array if structure is incorrect
+      }
+    } catch (error) {
+      console.error("Error fetching services:", error);
+      return [];
+    }
+  };
+  
+  
   
   
 
@@ -286,6 +368,8 @@ export const DataProvider = ({ children }) => {
         getUserDetails,
         userDetails,
         deleteCustomer,
+        deleteHost,
+        getServices,
       }}
     >
       {children}

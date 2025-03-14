@@ -38,7 +38,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: linear-gradient(135deg, #085D84, #13BE32);
+  background:#13BE32;
   flex-direction: column;
 }
 
@@ -142,7 +142,7 @@
 
 /* Login Button */
 .login-button {
-  background: linear-gradient(135deg, #085D84, #13BE32);
+  background: #13BE32;
   color: white;
   border: none;
   padding: 12px;

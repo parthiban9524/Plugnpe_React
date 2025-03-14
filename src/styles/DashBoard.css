@@ -14,7 +14,7 @@
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background: linear-gradient(135deg, #085D84, #13BE32);
+    background:  #085D84;
     color: white;
     padding: 20px;
     display: flex;
@@ -59,23 +59,6 @@
     background-color: #34495e;
 }
 
-.sidebar::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: #888; /* Scroll thumb color */
-    border-radius: 4px; /* Rounded edges */
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color on hover */
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: #f4f4f4; /* Background of the scrollbar track */
-    border-radius: 4px;
-}
 
 
 .menu-icon {

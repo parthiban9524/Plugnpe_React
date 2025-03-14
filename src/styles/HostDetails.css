@@ -13,7 +13,7 @@
   text-align: center;
   padding: 15px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #085D84, #13BE32);
+  background:  #085D84;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
 
 /* Get Details Button */
 .get-details-button {
-  background: linear-gradient(135deg, #085D84, #13BE32);
+  background:  #13BE32;
   color: white;
   font-size: 14px;
   font-family: "Poppins-Medium", sans-serif;
@@ -87,6 +87,31 @@
 
 .get-details-button:hover {
   background: #064B6B;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers the buttons horizontally */
+  align-items: center; /* Centers the buttons vertically */
+  gap: 10px; /* Adds space between buttons */
+  margin-top: 10px;
+}
+
+.edit-button, .delete-button {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
 }
 
 .station-details {

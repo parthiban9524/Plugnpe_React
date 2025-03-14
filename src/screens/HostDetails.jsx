@@ -3,7 +3,7 @@ import DataContext from "../api/context/DataContext";
 import "../styles/HostDetails.css";
 
 const HostDetails = () => {
-  const { chargingStations, getChargingStations, loading, error } = useContext(DataContext);
+  const { chargingStations, getChargingStations, loading, error,deleteHost } = useContext(DataContext);
   const [expandedStations, setExpandedStations] = useState({});
 
   useEffect(() => {
@@ -27,6 +27,16 @@ const HostDetails = () => {
     }));
   };
 
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this Host?"
+    );
+    if (confirmDelete) {
+      await deleteHost(id);
+      getChargingStations(); // Refresh list after deletion
+    }
+  };
+
   return (
     <div className="host-details-container">
       <div className="headerCon">
@@ -45,6 +55,7 @@ const HostDetails = () => {
 
           {/* Station Details - Show only when button is clicked */}
           {expandedStations[index] && (
+            <>
             <div className="station-details">
               <div className="detail-box"><strong>Host ID</strong><span>{station.customerId}</span></div>
               <div className="detail-box"><strong>Device ID</strong><span>{station.deviceId}</span></div>
@@ -61,6 +72,17 @@ const HostDetails = () => {
               <div className="detail-box"><strong>Charging Status</strong><span>{station.currentChargingStatus}</span></div>
               <div className="detail-box"><strong>Contact</strong><span>{station.holderPhone}</span></div>
             </div>
+                 <div colSpan="2" className="button-container">
+                 <button className="edit-button">Edit</button>
+                 <button
+                   className="delete-button"
+                   onClick={() => handleDelete(station.id)}
+                   disabled={true}
+                 >
+                   Delete
+                 </button>
+               </div>
+               </>
           )}
         </div>
       ))}

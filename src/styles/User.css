@@ -15,7 +15,7 @@
     text-align: center;
     padding: 15px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #085D84, #13BE32);
+    background:#085D84;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: inline-block;
     text-transform: uppercase;
@@ -78,7 +78,7 @@
 
 /* ✅ Get Details Button */
 .get-userDetails-button {
-  background: linear-gradient(135deg, #085D84, #13BE32);
+  background:  #13BE32;
   color: white;
   padding: 8px 12px;
   border: none;
