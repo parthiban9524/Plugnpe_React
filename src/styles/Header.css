@@ -33,3 +33,41 @@
   width: 60px; /* Adjust icon size */
   height: 60px;
 }
+
+
+/* ✅ Mobile & Tablet Styles */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #085d84;
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        transform: translateX(260px);
+    }
+
+    /* Show Menu Icon on Mobile & Tablet */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: none;
+        border: none;
+        color: #085d84;
+        font-size: 28px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+
+    .content {
+        margin-left: 50px;
+    }
+}
+

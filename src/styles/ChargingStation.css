@@ -1,0 +1,241 @@
+
+/* CSS File */
+
+.charging-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    margin-bottom: 15px;
+}
+.station-heading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background:  #085D84;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 25%;
+    margin-bottom: 20px;
+  }
+  
+  .headerCon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .detail-box {
+    flex: 1;
+    min-width: 200px;
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+  }
+  
+  .detail-box strong {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 10px;
+    font-family: "Poppins-Regular";
+  }
+  
+  .detail-box span {
+    font-size: 14px;
+    color: #13BE32;
+    font-family: "Poppins-Medium";
+  }
+
+.charging-form input, .charging-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background: #F9F9F9;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    padding: 10px;
+    font-family: "Poppins-Regular";
+}
+.label{
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px; /* Adjust spacing between options */
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between radio button and text */
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Poppins-Medium";
+  }
+  
+  /* Optional: Style the radio input */
+  .radio-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff; /* Change the radio button color */
+  }
+
+  .wifi-details{
+    background-color:#f5f5f5;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .wifi-details input{
+    margin: 10px;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+  }
+
+.heading{
+    font-family: "Poppins-SemiBold";
+    color: #085d84;
+}
+.dropdown-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.dropdown-group {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+}
+
+.row-container {
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.row-container label {
+    width: 48%;
+}
+
+.row-container input {
+    width: 48%;
+}
+
+/* Styled Select Field */
+.custom-select  {
+  width: 100%;
+  padding:12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-label  {
+  width: 48%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Poppins-Medium";
+  font-size: 16px;
+}
+
+/* Dropdown Arrow */
+.dropdown-arrow {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Amenities List (Flexbox) */
+.amenities-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: "Poppins-Regular";
+}
+
+
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Makes both fields take equal space */
+  }
+.save-button {
+    background: #13BE32;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.save-button:hover {
+    background: #0ea626;
+}
+
+.save-button:disabled {
+    background:  #0ea626; /* Light gray to indicate disabled state */
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}

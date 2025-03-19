@@ -9,6 +9,7 @@ import Payment from "../screens/Payment";
 import HostDetails from "../screens/HostDetails";
 import UserDetails from "../screens/UserDetails";
 import ServiceProvider from "../screens/ServiceProvider";
+import ChargingStation from "../screens/ChargingStation";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
             <Route path="payment" element={<Payment />} />
             <Route path="reports" element={<Reports />} />
             <Route path="location" element={<Location />} />
+            <Route path="chargingStation" element={<ChargingStation/>} />
             
             {/* ✅ New User Routes */}
             <Route path="userDetails" element={<UserDetails />} />

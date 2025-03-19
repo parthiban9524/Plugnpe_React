@@ -98,12 +98,11 @@
 /* Input Group */
 .input-group {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   background: #f2f2f2;
   border-radius: 8px;
   padding: 12px;
   width: 60%;
-  position: relative;
 }
 
 /* Password Group */
@@ -115,7 +114,7 @@
 .input-icon {
   font-size: 18px;
   color: #085d84;
-  margin-right: 10px;
+  position: absolute;
 }
 
 /* Input Fields */
@@ -125,6 +124,8 @@
   background: transparent;
   outline: none;
   font-size: 16px;
+  position: relative;
+  left: 30px;
 }
 
 /* Password Toggle */

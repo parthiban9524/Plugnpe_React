@@ -278,7 +278,7 @@ export const DataProvider = ({ children }) => {
     setError("");
   
     try {
-      const url = `${BASE_URL}/ChargingStation/DeleteChargingStation?id=${id}`;
+      const url = `${BASE_URL}/ChargingStation/DeleteChargingStation?stationId=${id}`;
   
       const response = await fetch(url, {
         method: "DELETE",
@@ -341,6 +341,104 @@ export const DataProvider = ({ children }) => {
       return [];
     }
   };
+
+  const addChargingStation = async (existingStation, formData, deviceId) => {
+    const payload = {
+      id: existingStation?.id || 0,
+      createdDate: existingStation?.createdDate,
+      modifiedDate: existingStation?.modifiedDate,
+      createdBy: existingStation?.createdBy || 0,
+      modifiedBy: existingStation?.modifiedBy || 0,
+      status: existingStation?.status,
+      customerId: Number(formData?.customerId) || existingStation?.customerId,
+      stationName: formData.stationName || null,
+      amenitiesAvailable: Array.isArray(formData.amenitiesAvailable) 
+      ? formData.amenitiesAvailable.join(", ") 
+      : "",
+      address: formData.address || null,
+      city: formData.city || null,
+      district: formData.district || null,
+      state: formData.state || null,
+      country: formData.country || null,
+      pinCode: Number(formData.pinCode) || null,
+      landmark: formData.landmark || null,
+      latitude: formData.latitude || null,
+      longitude: formData.longitude || null,
+      holderName: formData.holderName || null,
+      holderPhone: formData.holderMobile|| null,
+      holderEmail: formData.holderEmail || null,
+      vehicleSupport: Array.isArray(formData.vehicleSupport) 
+      ? formData.vehicleSupport.join(", ") 
+      : "",
+      chargerTypeSupport:formData.chargerTypeSupport || null,
+      connectorType: formData.connectorType || null,
+      powerRating: formData.powerRating || null,
+      usageType: formData.usageType || null,
+      deviceId: deviceId,
+      deviceSequence: existingStation?.deviceSequence || 0,
+      wifiUsername: formData.wifiUsername || null,
+      wifipassword: formData.wifipassword || null,
+      defaultWifiName: existingStation?.defaultWifiName || "",
+      defaultWifiPassword: existingStation?.defaultWifiPassword || "",
+      macAddress: existingStation?.macAddress || "",
+      deviceModel: existingStation?.deviceModel || null,
+      deviceName: formData.deviceName || null,
+      mqttDeviceStatus: existingStation?.mqttDeviceStatus || "",
+      mqttUpdatedTime: existingStation?.mqttUpdatedTime,
+      availability: formData.availability || null,
+      availableFromTime: formData.availableFromTime || null,
+      availableToTime: formData.availableToTime || null,
+      costType: formData.costType || null,
+      cost: Number(formData.cost) || 0,
+      minCharge: Number(formData.minCharge) || 0,
+      photo1: formData.photo1 || "",
+      photo2: formData.photo2 || "",
+      photo3: formData.photo3 || "",
+      vendorName: existingStation?.vendorName || null,
+      vendorDeviceId: existingStation?.vendorDeviceId || null,
+      connectivityMode: existingStation?.connectivityMode || null,
+      isFavourite: existingStation?.isFavourite || false,
+      currentChargingStatus: existingStation?.currentChargingStatus || "Idle",
+      lastUsed: existingStation?.lastUsed || "",
+      rating: Number(existingStation?.rating) || 0,
+    };
+  
+    console.log("Final Payload in Context:", JSON.stringify(payload, null, 2));
+  
+    try {
+      const response = await fetch(
+        `${BASE_URL}/ChargingStation/UpdateChargingStation`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+      }
+  
+      // 🛠 Fix: Read response as text before parsing
+      const text = await response.text();
+      if (!text) {
+        console.warn("Empty response from API");
+        return null; // Avoid parsing empty response
+      }
+  
+      const data = JSON.parse(text);
+      console.log("Station added successfully:", data);
+      return data;
+    } catch (error) {
+      console.error("Error adding station:", error);
+      throw error;
+    }
+  };
+  
+  
+  
   
   
   
@@ -370,6 +468,7 @@ export const DataProvider = ({ children }) => {
         deleteCustomer,
         deleteHost,
         getServices,
+        addChargingStation
       }}
     >
       {children}
